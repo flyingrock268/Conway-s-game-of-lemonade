@@ -10,6 +10,10 @@ public class cell : MonoBehaviour
 
     public List<cell> neighbors = new List<cell>();
 
+    public gridManager GM;
+
+    float TimeGap = 0.5f, lastTime;
+
     public enum state { 
     
         DEAD,
@@ -190,6 +194,32 @@ public class cell : MonoBehaviour
         
         }
     
+    }
+
+    private void OnMouseOver()
+    {
+
+        if (Input.GetMouseButton(0) && Time.time > lastTime + TimeGap && GM.going == null)
+        {
+
+            if (cellState == GM.currentState)
+            {
+
+                cellState = cell.state.DEAD;
+
+            }
+
+            else
+            {
+
+                cellState = GM.currentState;
+
+            }
+
+            lastTime = Time.time;
+
+        }
+
     }
 
 }
